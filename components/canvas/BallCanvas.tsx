@@ -8,6 +8,7 @@ import {
   useTexture,
 } from "@react-three/drei";
 import { StaticImageData } from "next/image";
+import { useInView } from "react-intersection-observer";
 
 import CanvasLoader from "../CanvasLoader";
 
@@ -47,16 +48,21 @@ function Ball({ imgUrl }: BallProps) {
 }
 
 export default function BallCanvas({ icon }: BallCanvasProps) {
+  const { ref, inView } = useInView({ threshold: 0.0 });
+
   return (
     <Canvas
       frameloop="demand"
       dpr={[1, 2]}
       gl={{ preserveDrawingBuffer: true }}
+      ref={ref}
     >
-      <Suspense fallback={<CanvasLoader />}>
-        <OrbitControls enableZoom={false} />
-        <Ball imgUrl={icon} />
-      </Suspense>
+      {inView && (
+        <Suspense fallback={<CanvasLoader />}>
+          <OrbitControls enableZoom={false} />
+          <Ball imgUrl={icon} />
+        </Suspense>
+      )}
       <Preload all />
     </Canvas>
   );

@@ -2,6 +2,7 @@ import { Suspense, useEffect, useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Preload } from "@react-three/drei";
 import { useGLTF } from "@react-three/drei";
+import { useInView } from "react-intersection-observer";
 
 import CanvasLoader from "../CanvasLoader";
 
@@ -36,6 +37,7 @@ function Computers({ isMobile }: ComputersProps) {
 
 export default function ComputersCanvas() {
   const [isMobile, setIsMobile] = useState(false);
+  const { ref, inView } = useInView({ threshold: 0.0 });
 
   const handleMediaQueryChange = (event: MediaQueryListEvent) => {
     setIsMobile(event.matches);
@@ -58,15 +60,18 @@ export default function ComputersCanvas() {
       shadows
       camera={{ position: [20, 3, 5], fov: 25 }}
       gl={{ preserveDrawingBuffer: true }}
+      ref={ref}
     >
-      <Suspense fallback={<CanvasLoader />}>
-        <OrbitControls
-          enableZoom={false}
-          maxPolarAngle={Math.PI / 2}
-          minPolarAngle={Math.PI / 2}
-        />
-        <Computers isMobile={isMobile} />
-      </Suspense>
+      {inView && (
+        <Suspense fallback={<CanvasLoader />}>
+          <OrbitControls
+            enableZoom={false}
+            maxPolarAngle={Math.PI / 2}
+            minPolarAngle={Math.PI / 2}
+          />
+          <Computers isMobile={isMobile} />
+        </Suspense>
+      )}
       <Preload all />
     </Canvas>
   );
