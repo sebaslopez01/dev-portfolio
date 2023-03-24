@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import Link from "next/link";
 import Image from "next/image";
 
 import { navLinks } from "@/constants";
@@ -33,20 +32,19 @@ export default function Navbar() {
       }`}
     >
       <div className="w-full flex justify-between items-center max-w-7xl mx-auto">
-        <Link
-          href="/"
-          className="flex items-center gap-2"
+        <div
+          className="flex items-center gap-2 cursor-pointer"
           onClick={() => {
             setActive("");
-            window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+            window.scrollTo({ top: 0, behavior: "smooth" });
           }}
         >
           <Image src={logo} alt="Logo" className="w-9 h-9 object-contain" />
-          <p className="text-white text-[18px] font-bold cursor-pointer flex">
+          <p className="text-white text-[18px] font-bold flex">
             Sebas &nbsp;
             <span className="sm:block hidden">| Python Mastery</span>
           </p>
-        </Link>
+        </div>
         <ul className="list-none hidden sm:flex flex-row gap-10">
           {navLinks.map((link) => (
             <li
