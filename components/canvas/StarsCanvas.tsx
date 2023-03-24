@@ -2,7 +2,7 @@ import { useState, useRef, Suspense, Ref } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Points, PointMaterial, Preload } from "@react-three/drei";
 // import { Mesh } from "three";
-import * as random from "maath/random/dist/maath-random.cjs";
+import { inSphere } from "maath/random";
 
 // type PointsType = typeof Points;
 
@@ -10,7 +10,7 @@ function Stars() {
   const pointRef = useRef<any>(null);
 
   const [sphere] = useState(() =>
-    random.inSphere(new Float32Array(5000), { radius: 1.2 })
+    inSphere(new Float32Array(5000), { radius: 1.2 })
   );
 
   useFrame((_state, delta) => {
@@ -24,7 +24,7 @@ function Stars() {
     <group rotation={[0, 0, Math.PI / 4]}>
       <Points
         ref={pointRef}
-        positions={new Float32Array(sphere)}
+        positions={sphere as Float32Array}
         stride={3}
         frustumCulled
       >
