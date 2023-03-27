@@ -10,12 +10,13 @@ interface ComputersProps {
   isMobile: boolean;
 }
 
-function Computers({ isMobile }: ComputersProps) {
-  const computer = useGLTF("/desktop_pc/scene.gltf");
+function Pug({ isMobile }: ComputersProps) {
+  // const computer = useGLTF("/desktop_pc/scene.gltf");
+  const pug = useGLTF("/pug/scene.gltf");
 
   return (
     <mesh>
-      <hemisphereLight intensity={0.15} groundColor="black" />
+      <hemisphereLight intensity={0.35} groundColor="black" />
       <spotLight
         position={[-20, 50, 10]}
         angle={0.12}
@@ -26,16 +27,16 @@ function Computers({ isMobile }: ComputersProps) {
       />
       <pointLight intensity={1} />
       <primitive
-        object={computer.scene}
-        scale={isMobile ? 0.7 : 0.75}
-        position={isMobile ? [0, -3, -2.2] : [0, -3.25, -1.5]}
-        rotation={[-0.01, -0.2, -0.1]}
+        object={pug.scene}
+        scale={isMobile ? 0.02 : 0.03}
+        position={isMobile ? [0, -2, 0] : [0, -3.25, 0]}
+        rotation={[-0.01, 1.8, 0]}
       />
     </mesh>
   );
 }
 
-export default function ComputersCanvas() {
+export default function PugCanvas() {
   const [isMobile, setIsMobile] = useState(false);
   const { ref, inView } = useInView({ threshold: 0.0 });
 
@@ -69,7 +70,7 @@ export default function ComputersCanvas() {
             maxPolarAngle={Math.PI / 2}
             minPolarAngle={Math.PI / 2}
           />
-          <Computers isMobile={isMobile} />
+          <Pug isMobile={isMobile} />
         </Suspense>
       )}
       <Preload all />

@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import dynamic from "next/dynamic";
 
-const ComputersCanvas = dynamic(() => import("./canvas/ComputersCanvas"), {
+const PugCanvas = dynamic(() => import("./canvas/PugCanvas"), {
   ssr: false,
 });
 
@@ -18,12 +18,12 @@ export default function Hero() {
             Hi, I&apos;m <span className="text-[#915eff]">Sebastián</span>
           </h1>
           <p className="heroSubText mt-2 text-white-100">
-            I develop 3D visuals, user <br className="sm:block hidden" />{" "}
-            interfaces and web applications.
+            I develop web applications, user <br className="sm:block hidden" />{" "}
+            interfaces and web scraping solutions.
           </p>
         </div>
       </div>
-      <ComputersCanvas />
+      <PugCanvas />
       <div className="absolute xs:bottom-10 bottom-32 w-full flex justify-center items-center">
         <a href="#about">
           <div className="w-[35px] h-[64px] rounded-3xl border-4 border-secondary flex justify-center items-start p-2">

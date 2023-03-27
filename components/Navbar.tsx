@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 
 import { navLinks } from "@/constants";
-import logo from "@/assets/logo.svg";
+import logo from "@/public/logo.svg";
 import menu from "@/assets/menu.svg";
 import close from "@/assets/close.svg";
 
@@ -39,10 +39,10 @@ export default function Navbar() {
             window.scrollTo({ top: 0, behavior: "smooth" });
           }}
         >
-          <Image src={logo} alt="Logo" className="w-9 h-9 object-contain" />
+          <Image src={logo} alt="Logo" className="w-14 h-14 object-contain" />
           <p className="text-white text-[18px] font-bold flex">
             Sebas &nbsp;
-            <span className="sm:block hidden">| Python Mastery</span>
+            <span className="sm:block hidden">| Full-Stack Master</span>
           </p>
         </div>
         <ul className="list-none hidden sm:flex flex-row gap-10">

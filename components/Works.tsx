@@ -1,19 +1,17 @@
 import Tilt from "react-parallax-tilt";
 import { motion } from "framer-motion";
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 
 import github from "@/assets/github.png";
+import webPage from "@/assets/web-page.png";
+
 import SectionWrapper from "./hoc/SectionWrapper";
 import { projects } from "@/constants";
 import { fadeIn, textVariant } from "@/utils/motion";
+import { ProjectData } from "@/interfaces";
 
-interface ProjectCardProps {
+interface ProjectCardProps extends ProjectData {
   index: number;
-  name: string;
-  description: string;
-  tags: { name: string; color: string }[];
-  image: StaticImageData;
-  sourceCodeLink: string;
 }
 
 function ProjectCard({
@@ -22,12 +20,12 @@ function ProjectCard({
   description,
   tags,
   image,
+  pageLink,
   sourceCodeLink,
 }: ProjectCardProps) {
   return (
     <motion.div variants={fadeIn("up", "spring", index * 0.5, 0.75)}>
       <Tilt
-        tiltMaxAngleX={45}
         scale={1.1}
         transitionSpeed={450}
         className="bg-tertiary p-5 rounded-2xl sm:w-[360px] w-full"
@@ -38,18 +36,33 @@ function ProjectCard({
             alt={name}
             className="w-full h-full object-cover rounded-2xl"
           />
-          <div className="absolute inset-0 flex justify-end m-3 card-img_hover">
-            <a
-              href={sourceCodeLink}
-              target="_blank"
-              className="black-gradient w-10 h-10 rounded-full flex justify-center items-center"
-            >
-              <Image
-                src={github}
-                alt="Github"
-                className="w-1/2 h-1/2 object-contain"
-              />
-            </a>
+          <div className="absolute inset-0 flex space-x-2 justify-end m-3 card-img_hover">
+            {pageLink && (
+              <a
+                href={pageLink}
+                target="_blank"
+                className="black-gradient w-10 h-10 rounded-full flex justify-center items-center"
+              >
+                <Image
+                  src={webPage}
+                  alt="Web Page Icon"
+                  className="w-1/2 h-1/2 object-contain"
+                />
+              </a>
+            )}
+            {sourceCodeLink && (
+              <a
+                href={sourceCodeLink}
+                target="_blank"
+                className="black-gradient w-10 h-10 rounded-full flex justify-center items-center"
+              >
+                <Image
+                  src={github}
+                  alt="Github Icon"
+                  className="w-1/2 h-1/2 object-contain"
+                />
+              </a>
+            )}
           </div>
         </div>
         <div className="mt-5">
@@ -76,7 +89,7 @@ function Works() {
     <>
       <motion.div variants={textVariant()}>
         <p className="sectionSubText">My Work</p>
-        <h2 className="sectionHeadText">Projects.</h2>
+        <h2 className="sectionHeadText">Projects</h2>
       </motion.div>
       <div className="w-full flex">
         <motion.p

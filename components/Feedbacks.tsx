@@ -4,14 +4,10 @@ import Image from "next/image";
 import SectionWrapper from "./hoc/SectionWrapper";
 import { fadeIn, textVariant } from "@/utils/motion";
 import { testimonials } from "@/constants";
+import { TestimonialData } from "@/interfaces";
 
-interface FeedbackCardProps {
+interface FeedbackCardProps extends TestimonialData {
   index: number;
-  testimonial: string;
-  name: string;
-  designation: string;
-  company: string;
-  image: string;
 }
 
 function FeedbackCard({
@@ -19,7 +15,7 @@ function FeedbackCard({
   testimonial,
   name,
   designation,
-  company,
+  companyName,
   image,
 }: FeedbackCardProps) {
   return (
@@ -36,7 +32,7 @@ function FeedbackCard({
               <span className="blue-text-gradient">@</span> {name}
             </p>
             <p className="mt-1 text-secondary text-[12px]">
-              {designation} of {company}
+              {designation} of {companyName}
             </p>
           </div>
           <Image

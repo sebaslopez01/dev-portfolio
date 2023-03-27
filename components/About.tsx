@@ -1,26 +1,19 @@
-import React from "react";
 import Tilt from "react-parallax-tilt";
 import { motion } from "framer-motion";
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 
 import { services } from "@/constants";
 import { fadeIn, textVariant } from "@/utils/motion";
 import SectionWrapper from "./hoc/SectionWrapper";
+import { ServiceData } from "@/interfaces";
 
-interface ServiceCardProps {
+interface ServiceCardProps extends ServiceData {
   index: number;
-  title: string;
-  icon: StaticImageData;
 }
 
 function ServiceCard({ index, title, icon }: ServiceCardProps) {
   return (
-    <Tilt
-      className="xs:w-[250px] w-full"
-      scale={1.1}
-      transitionSpeed={450}
-      tiltMaxAngleX={45}
-    >
+    <Tilt className="xs:w-[250px] w-full" scale={1.1} transitionSpeed={450}>
       <motion.div
         variants={fadeIn("right", "spring", 0.5 * index, 0.75)}
         className="w-full green-pink-gradient p-[1px] rounded-[20px] shadow-card"
@@ -41,7 +34,7 @@ function About() {
     <>
       <motion.div variants={textVariant()}>
         <p className="sectionSubText">Introduction</p>
-        <h2 className="sectionHeadText">Overview.</h2>
+        <h2 className="sectionHeadText">Overview</h2>
       </motion.div>
       <motion.p
         variants={fadeIn("", "", 0.1, 1)}

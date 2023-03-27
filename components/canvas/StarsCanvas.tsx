@@ -1,10 +1,7 @@
 import { useState, useRef, Suspense, Ref } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Points, PointMaterial, Preload } from "@react-three/drei";
-// import { Mesh } from "three";
 import { inSphere } from "maath/random";
-
-// type PointsType = typeof Points;
 
 function Stars() {
   const pointRef = useRef<any>(null);
