@@ -11,7 +11,6 @@ interface ComputersProps {
 }
 
 function Pug({ isMobile }: ComputersProps) {
-  // const computer = useGLTF("/desktop_pc/scene.gltf");
   const pug = useGLTF("/pug/scene.gltf");
 
   return (
@@ -60,7 +59,7 @@ export default function PugCanvas() {
       frameloop="demand"
       shadows
       camera={{ position: [20, 3, 5], fov: 25 }}
-      gl={{ preserveDrawingBuffer: true }}
+      gl={{ preserveDrawingBuffer: true, powerPreference: "low-power" }}
       ref={ref}
     >
       {inView && (

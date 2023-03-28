@@ -131,10 +131,11 @@ const experiences: ExperienceData[] = [
     iconBg: "#383E56",
     date: "April 2021 - March 2022",
     points: [
-      "Developing and maintaining web applications using React.js and other related technologies.",
-      "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
+      "Developing and maintaining a web application using Django and other related technologies.",
+      "Creating an automated web scraping system.",
+      "Using SEO to optimize Google searches.",
       "Implementing responsive design and ensuring cross-browser compatibility.",
-      "Participating in code reviews and providing constructive feedback to other developers.",
+      "Implementing of Full-Text Search.",
     ],
   },
   {
@@ -144,10 +145,9 @@ const experiences: ExperienceData[] = [
     iconBg: "#E6DEDD",
     date: "Sept 2022 - Nov 2022",
     points: [
-      "Developing and maintaining web applications using React.js and other related technologies.",
-      "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
+      "Developing and maintaining a web application using NextJS and other related technologies.",
+      "Using SEO to optimize Google searches.",
       "Implementing responsive design and ensuring cross-browser compatibility.",
-      "Participating in code reviews and providing constructive feedback to other developers.",
     ],
   },
   {
@@ -157,8 +157,8 @@ const experiences: ExperienceData[] = [
     iconBg: "#383E56",
     date: "Jan 2023 - Feb 2023",
     points: [
-      "Developing and maintaining web applications using React.js and other related technologies.",
-      "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
+      "Developing and maintaining a web application using NextJS and other related technologies.",
+      "Leading a team to get its greates potential.",
       "Implementing responsive design and ensuring cross-browser compatibility.",
       "Participating in code reviews and providing constructive feedback to other developers.",
     ],
