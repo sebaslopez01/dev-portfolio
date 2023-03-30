@@ -28,7 +28,7 @@ function Pug({ isMobile }: ComputersProps) {
       <primitive
         object={pug.scene}
         scale={isMobile ? 0.02 : 0.03}
-        position={isMobile ? [0, -2, 0] : [0, -3.25, 0]}
+        position={isMobile ? [0, -2, 0] : [0, -4, 0]}
         rotation={[-0.01, 1.8, 0]}
       />
     </mesh>
