@@ -28,9 +28,9 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "assets/index.js"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "assets"
   ]
 }
