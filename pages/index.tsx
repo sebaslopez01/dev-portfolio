@@ -4,7 +4,7 @@ import dynamic from "next/dynamic";
 import About from "@/components/About";
 import Contact from "@/components/Contact";
 import Experience from "@/components/Experience";
-import Feedbacks from "@/components/Feedbacks";
+// import Feedbacks from "@/components/Feedbacks";
 import Hero from "@/components/Hero";
 import Navbar from "@/components/Navbar";
 import Tech from "@/components/Tech";

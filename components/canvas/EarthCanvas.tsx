@@ -1,4 +1,4 @@
-import { Suspense } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Preload, useGLTF } from "@react-three/drei";
 import { useInView } from "react-intersection-observer";
@@ -14,14 +14,29 @@ function Earth() {
 useGLTF.preload("/planet/scene.gltf");
 
 export default function EarthCanvas() {
-  const { ref, inView } = useInView({ threshold: 0.0 });
+  const [isMobile, setIsMobile] = useState(false);
+  const { ref, inView } = useInView({ threshold: 0 });
+
+  const handleMediaQueryChange = (event: MediaQueryListEvent) => {
+    setIsMobile(event.matches);
+  };
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(max-width: 500px)");
+    setIsMobile(mediaQuery.matches);
+
+    mediaQuery.addEventListener("change", handleMediaQueryChange);
+
+    return () => {
+      mediaQuery.removeEventListener("change", handleMediaQueryChange);
+    };
+  }, []);
 
   return (
     <Canvas
-      shadows
       frameloop="demand"
       dpr={[0.5, 2]}
-      gl={{ preserveDrawingBuffer: true }}
+      shadows={!isMobile}
       camera={{ fov: 45, near: 0.1, far: 200, position: [-4, 3, 6] }}
       ref={ref}
     >

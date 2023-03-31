@@ -38,7 +38,7 @@ useGLTF.preload("/pug/scene.gltf");
 
 export default function PugCanvas() {
   const [isMobile, setIsMobile] = useState(false);
-  const { ref, inView } = useInView({ threshold: 0.0 });
+  const { ref, inView } = useInView({ threshold: 0 });
 
   const handleMediaQueryChange = (event: MediaQueryListEvent) => {
     setIsMobile(event.matches);
@@ -59,9 +59,8 @@ export default function PugCanvas() {
     <Canvas
       frameloop="demand"
       dpr={[0.5, 2]}
-      shadows
+      shadows={!isMobile}
       camera={{ position: [20, 3, 5], fov: 25 }}
-      gl={{ preserveDrawingBuffer: true, powerPreference: "low-power" }}
       ref={ref}
     >
       {inView && (

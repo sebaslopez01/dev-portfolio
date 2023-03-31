@@ -4,7 +4,11 @@ import { Points, PointMaterial, Preload } from "@react-three/drei";
 import { inSphere } from "maath/random";
 import { useInView } from "react-intersection-observer";
 
-function Stars() {
+interface StarsProps {
+  ref?: any;
+}
+
+function Stars({ ref }: StarsProps) {
   const pointRef = useRef<any>(null);
   const [pointsQuantity, setPointsQuantity] = useState(5000);
 
@@ -38,7 +42,7 @@ function Stars() {
   }, []);
 
   return (
-    <group rotation={[0, 0, Math.PI / 4]}>
+    <group ref={ref} rotation={[0, 0, Math.PI / 4]}>
       <Points
         ref={pointRef}
         positions={sphere as Float32Array}
@@ -58,7 +62,7 @@ function Stars() {
 }
 
 export default function StarsCanvas() {
-  const { ref, inView } = useInView({ threshold: 0.0 });
+  const { ref, inView } = useInView({ threshold: 0 });
 
   return (
     <div className="w-full h-auto absolute inset-0 z-[-1]">

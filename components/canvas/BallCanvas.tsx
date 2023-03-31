@@ -48,15 +48,10 @@ function Ball({ imgUrl }: BallProps) {
 }
 
 export default function BallCanvas({ icon }: BallCanvasProps) {
-  const { ref, inView } = useInView({ threshold: 0.0 });
+  const { ref, inView } = useInView({ threshold: 0 });
 
   return (
-    <Canvas
-      frameloop="demand"
-      dpr={[0.5, 2]}
-      gl={{ preserveDrawingBuffer: true }}
-      ref={ref}
-    >
+    <Canvas frameloop="demand" dpr={[0.5, 2]} ref={ref}>
       {inView && (
         <Suspense fallback={<CanvasLoader />}>
           <OrbitControls enableZoom={false} />
