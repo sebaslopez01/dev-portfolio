@@ -61,7 +61,7 @@ export default function PugCanvas() {
       dpr={[0.5, 2]}
       shadows
       camera={{ position: [20, 3, 5], fov: 25 }}
-      gl={{ preserveDrawingBuffer: true, powerPreference: "high-perfomance" }}
+      gl={{ preserveDrawingBuffer: true, powerPreference: "low-power" }}
       ref={ref}
     >
       {inView && (
