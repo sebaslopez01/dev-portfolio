@@ -1,6 +1,11 @@
 import { Suspense, useEffect, useState } from "react";
 import { Canvas } from "@react-three/fiber";
-import { OrbitControls, Preload, useGLTF } from "@react-three/drei";
+import {
+  OrbitControls,
+  Preload,
+  useGLTF,
+  PerformanceMonitor,
+} from "@react-three/drei";
 import { useInView } from "react-intersection-observer";
 
 import CanvasLoader from "../CanvasLoader";
@@ -38,6 +43,7 @@ useGLTF.preload("/pug/scene.gltf");
 
 export default function PugCanvas() {
   const [isMobile, setIsMobile] = useState(false);
+  const [dpr, setDpr] = useState(1);
   const { ref, inView } = useInView({ threshold: 0 });
 
   const handleMediaQueryChange = (event: MediaQueryListEvent) => {
@@ -58,11 +64,15 @@ export default function PugCanvas() {
   return (
     <Canvas
       frameloop="demand"
-      dpr={[0.5, 2]}
+      dpr={dpr}
       shadows={!isMobile}
       camera={{ position: [20, 3, 5], fov: 25 }}
       ref={ref}
     >
+      <PerformanceMonitor
+        onIncline={() => setDpr(2)}
+        onDecline={() => setDpr(0.5)}
+      />
       {inView && (
         <Suspense fallback={<CanvasLoader />}>
           <OrbitControls
