@@ -19,6 +19,10 @@ export default function Home() {
     <>
       <Head>
         <title>Sebas López | Portfolio</title>
+        <meta
+          name="description"
+          content="Hi! This is my portfolio website, my name is Sebastián López, I am a Full-Stack Developer and I hope you enjoy all the projects I have done."
+        />
       </Head>
       <div className="relative z-0 bg-primary">
         <div className="bg-hero-pattern bg-cover bg-no-repeat bg-center">
