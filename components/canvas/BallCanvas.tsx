@@ -53,7 +53,7 @@ export default function BallCanvas({ icon }: BallCanvasProps) {
   return (
     <Canvas
       frameloop="demand"
-      dpr={[1, 2]}
+      dpr={[0.5, 2]}
       gl={{ preserveDrawingBuffer: true }}
       ref={ref}
     >

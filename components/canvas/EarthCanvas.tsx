@@ -11,6 +11,8 @@ function Earth() {
   return <primitive object={earth.scene} scale={2.5} position-y={0} />;
 }
 
+useGLTF.preload("/planet/scene.gltf");
+
 export default function EarthCanvas() {
   const { ref, inView } = useInView({ threshold: 0.0 });
 
@@ -18,7 +20,7 @@ export default function EarthCanvas() {
     <Canvas
       shadows
       frameloop="demand"
-      dpr={[1, 2]}
+      dpr={[0.5, 2]}
       gl={{ preserveDrawingBuffer: true }}
       camera={{ fov: 45, near: 0.1, far: 200, position: [-4, 3, 6] }}
       ref={ref}

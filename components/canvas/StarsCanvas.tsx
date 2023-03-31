@@ -1,13 +1,15 @@
-import { useState, useRef, Suspense, Ref } from "react";
+import { useState, useRef, Suspense, useEffect } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Points, PointMaterial, Preload } from "@react-three/drei";
 import { inSphere } from "maath/random";
+import { useInView } from "react-intersection-observer";
 
 function Stars() {
   const pointRef = useRef<any>(null);
+  const [pointsQuantity, setPointsQuantity] = useState(5000);
 
   const [sphere] = useState(() =>
-    inSphere(new Float32Array(5000), { radius: 1.2 })
+    inSphere(new Float32Array(pointsQuantity), { radius: 1.2 })
   );
 
   useFrame((_state, delta) => {
@@ -16,6 +18,24 @@ function Stars() {
       pointRef.current.rotation.y -= delta / 15;
     }
   });
+
+  const handleMediaQueryChange = (event: MediaQueryListEvent) => {
+    if (event.matches) {
+      setPointsQuantity(500);
+    } else {
+      setPointsQuantity(5000);
+    }
+  };
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(max-width: 500px)");
+
+    mediaQuery.addEventListener("change", handleMediaQueryChange);
+
+    return () => {
+      mediaQuery.removeEventListener("change", handleMediaQueryChange);
+    };
+  }, []);
 
   return (
     <group rotation={[0, 0, Math.PI / 4]}>
@@ -38,12 +58,16 @@ function Stars() {
 }
 
 export default function StarsCanvas() {
+  const { ref, inView } = useInView({ threshold: 0.0 });
+
   return (
     <div className="w-full h-auto absolute inset-0 z-[-1]">
-      <Canvas camera={{ position: [0, 0, 1] }}>
-        <Suspense fallback={null}>
-          <Stars />
-        </Suspense>
+      <Canvas dpr={[0.5, 2]} camera={{ position: [0, 0, 1] }} ref={ref}>
+        {inView && (
+          <Suspense fallback={null}>
+            <Stars />
+          </Suspense>
+        )}
         <Preload all />
       </Canvas>
     </div>
