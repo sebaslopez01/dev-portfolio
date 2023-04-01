@@ -237,7 +237,7 @@ const projects: ProjectData[] = [
       },
     ],
     image: agromas,
-    pageLink: "https://agromas-sebaslopez01.vercel.app/",
+    pageLink: "https://agromas.vercel.app",
     sourceCodeLink: "https://github.com/sebaslopez01/agromas",
   },
   {
@@ -263,7 +263,7 @@ const projects: ProjectData[] = [
       },
     ],
     image: qs,
-    pageLink: "https://qsseguroseinversiones.com/",
+    pageLink: "https://qsseguroseinversiones.com",
   },
   {
     name: "Torojob",
